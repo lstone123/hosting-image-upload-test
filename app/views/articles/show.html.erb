@@ -1,6 +1,22 @@
 <p style="color: green"><%= notice %></p>
+<% if @article.photos.any? %>
+
+  <% @article.photos.each do |photo| %>
+    <%= cl_image_tag(photo.key, height: 300) %>
+  <% end %>
+
+<% end %>
 
 <%= render @article %>
+
+<% if @article.photos.any? %>
+  <% @article.photos.each do |photo| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path(photo.key) %>)">
+    <%= @article.title %>
+    </div>
+  <% end %>
+
+<% end %>
 
 <div>
   <%= link_to "Edit this article", edit_article_path(@article) %> |
